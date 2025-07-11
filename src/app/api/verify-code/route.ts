@@ -36,7 +36,7 @@ export async function POST(request: Request) {
             }, {status: 400})
         } else {
             return Response.json({
-            success: true,
+            success: false,
             message: "Incorrect verification code."
             }, {status: 400})
         }
