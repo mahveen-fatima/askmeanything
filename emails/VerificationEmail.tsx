@@ -53,7 +53,7 @@ export default function VerificationEmail({ username, otp }: VerificationEmailPr
         <Row>
           <Button
             href={`http://localhost:3000/verify/${username}`}
-            style={{ color: '#61dafb' }}
+            style={{ color: 'black', backgroundColor: "orange" }}
           >
             Verify here
           </Button>
