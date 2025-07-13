@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation"
 import { signUpSchema } from "@/schema/signUpSchema"
 import axios, { AxiosError } from "axios"
 import { ApiResponse } from "@/types/ApiResponse"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Loader2 } from "lucide-react"
@@ -60,27 +60,23 @@ const page = () => {
     setIsSubmitting(true)
     try {
       const response = await axios.post<ApiResponse>("/api/sign-up", data)
-      toast.success('Event has been created', {
-        description: response.data.message
-      })
+      toast.success('Signed up successfully')
       router.replace(`/verify/${username}`)
       setIsSubmitting(false)
     } catch (error) {
       console.error("Error in signup of user", error)
       const axiosError = error as AxiosError<ApiResponse>
       let errorMessage = axiosError.response?.data.message
-      toast.error("Signup failed",
-        {description: errorMessage}
-      )
+      toast.error("Signup failed")
       setIsSubmitting(false)
     }
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen bg-stone-100">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-3xl mb-6">
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-3xl mb-3">
             Join <br /> ASK ME ANYTHING
           </h1>
           <p className="mb-4">Sign up to start your ama adventure.</p>
@@ -145,7 +141,7 @@ const page = () => {
               )}
             />
 
-            <Button className="w-full" type="submit" disabled={isSubmitting}>
+            <Button className="w-full bg-stone-950 hover:bg-neutral-900" type="submit" disabled={isSubmitting}>
               {
                 isSubmitting ? (
                   <>
