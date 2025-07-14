@@ -13,11 +13,11 @@ const Navbar = () => {
     const user: User = session?.user as User
 
   return (
-    <nav className='p-4 md:p-6 shadow-md'>
-        <div className='container mx-auto flex flex-col md:flex-row justify-between items-center'>
+    <nav className='p-4 border border-b-gray-500/20'>
+        <div className='mx-auto lg:mx-16 flex flex-col md:flex-row justify-between items-center'>
             <a 
-                className='text-xl font-bold mb-4 md:mb-0' 
-                href="#">
+                className='text-xl font-bold mb-4 md:mb-0 bg-gray-400 px-2 py-1 rounded-lg' 
+                href="/">
                 AMA
             </a>
             <div>
