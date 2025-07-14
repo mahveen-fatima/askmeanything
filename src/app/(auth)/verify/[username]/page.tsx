@@ -29,17 +29,15 @@ const page = () => {
                 username: params.username,
                 code: data.verifyCode
             })
-            console.log("verify response: ", response.data.message) //TODO: REMOVE
-            toast.success('code sended successfully')
-            router.replace("sign-in")
+            toast.success('Account verified successfully')
+            router.replace("/sign-in")
             setIsSubmitting(false)
             
         } catch (error) {
             console.error("Error while verifying user", error)
             const axiosError = error as AxiosError<ApiResponse>
-            toast.error("verify failed")
+            toast.error("Account verification failed")
             setIsSubmitting(false)
-            console.log("axios error: ", axiosError.response?.data.message) // TODO: REMOVE
         }
     }
 

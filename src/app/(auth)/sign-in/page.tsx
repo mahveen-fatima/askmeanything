@@ -37,7 +37,7 @@ const page = () => {
     })
 
     if(result?.error) {
-      if(result.error == "CredentialsSignin") {
+      if(result.error === "CredentialsSignin") {
         toast.error("Sign in failed")
         setIsSubmitting(false)
       } else {
@@ -113,7 +113,7 @@ const page = () => {
 
         <div className="text-center mt-4">
           <p>
-            Sign up if new here{" "}
+            Not a user yet?{" "}
             <Link href="/sign-up" className="text-blue-600 hover:text-blue-800">
               Sign up
             </Link>

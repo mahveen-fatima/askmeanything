@@ -28,9 +28,9 @@ export async function POST(request: Request) {
         await user.save()
 
         return Response.json({
-            success: false,
+            success: true,
             message: "Message sent successfully."
-        }, {status: 403})
+        }, {status: 201})
         
     } catch (error) {
         console.log("Error adding messages ", error)
