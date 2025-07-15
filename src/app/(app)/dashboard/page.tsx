@@ -109,7 +109,7 @@ const page = () => {
 
 
   return (
-    <div className="my-2 mx-4 md:mx-14 lg:mx-16 p-6 bg-stone-100">
+    <div className="my-2 mx-4 md:mx-14 lg:mx-16 p-6">
       <h1 className="text-4xl font-bold mb-4 text-center">User Dashboard</h1>
 
       <div className="mb-4">
