@@ -23,6 +23,7 @@ const page = () => {
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [isSwitchLoading, setIsSwitchLoading] = useState(false)
+  const [isInitialLoading, setIsInitialLoading ] = useState(true)
   
   const handleDeleteMessage = (messageId: string) => {
     setMessages(messages.filter((message) => message._id != messageId))
@@ -48,6 +49,7 @@ const page = () => {
       toast.error(axiosError.response?.data.message || "Failed to fetch message settings")
     } finally {
       setIsSwitchLoading(false)
+      setIsInitialLoading(false)
     }
   }, [setValue])
 
@@ -55,14 +57,12 @@ const page = () => {
     setIsLoading(true)
     setIsSwitchLoading(false)
     try {
-      const response = await axios.get("/api/get-messagse")
+      const response = await axios.get<ApiResponse>("/api/get-messages")
       setMessages(response.data.messages || [])
       if(refresh) {
         toast.success("Refresh Messages", {
           description: "Showing latest messages"
         })
-      } else {
-        toast("No msgs to show")
       }
 
     } catch (error) {
@@ -70,7 +70,7 @@ const page = () => {
       toast.error(axiosError.response?.data.message || "Failed to fetch message")
     } finally {
       setIsLoading(false)
-      setIsSwitchLoading(false)
+      // setIsSwitchLoading(false)
     }
   }, [setIsLoading, setMessages])
 
@@ -125,6 +125,7 @@ const page = () => {
         </div>
       </div>
 
+      {!isInitialLoading && (
       <div className="mb-4">
         <Switch 
           {...register("acceptMessages")}
@@ -136,6 +137,7 @@ const page = () => {
           Accept Messages: {acceptMessages ? "On" : "Off"}
         </span>
       </div>
+      )}
       <Separator />
 
       <Button
@@ -152,7 +154,7 @@ const page = () => {
           <RefreshCcw className="h-4 w-4 border-gray-500/20" />
         )}
       </Button>
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
         {messages.length > 0 ? (
           messages.map((message, index) => (
             <MessageCard 

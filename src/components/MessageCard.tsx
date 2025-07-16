@@ -26,6 +26,7 @@ import { Message } from "@/model/User"
 import axios from "axios"
 import { ApiResponse } from "@/types/ApiResponse"
 import { toast } from "sonner"
+import dayjs from "dayjs"
 
 type MessageCardProps = {
     message: Message;
@@ -39,34 +40,43 @@ const MessageCard = ({message, onMessageDelete}: MessageCardProps) => {
         onMessageDelete(message._id)
     }
   return (
-    <Card>
-        <CardHeader>
-            <CardTitle>Card Title</CardTitle>
+    <Card className="relative w-[440]">
+      <div className="absolute top-2 right-2">      
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button className="hover:bg-stone-800 rounded-full bg-white text-black hover:text-white">
+              <X className="h-5 w-5" /> 
+            </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                    This action cannot be undone. This will permanently delete this message.
+                </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={handleDeleteConfirm}>
+                  Continue
+                </AlertDialogAction>
+                </AlertDialogFooter>
+            </AlertDialogContent>
+        </AlertDialog>
+      </div>
 
-             <AlertDialog>
-                <AlertDialogTrigger asChild>
-                    <Button variant="destructive"> <X className="h-5 w-5" /> </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                    <AlertDialogHeader>
-                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                    <AlertDialogDescription>
-                        This action cannot be undone. This will permanently delete your
-                        account and remove your data from our servers.
-                    </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={handleDeleteConfirm}>Continue</AlertDialogAction>
-                    </AlertDialogFooter>
-                </AlertDialogContent>
-            </AlertDialog>
-
-            <CardDescription>Card Description</CardDescription>
-            <CardAction>Card Action</CardAction>
+      <div className="flex-grow">
+        <CardHeader className="w-[400]">
+          <CardTitle>{message.content}</CardTitle>
         </CardHeader>
-        <CardContent>
-        </CardContent>
+      </div>
+
+      <CardFooter className="mt-auto">
+        <div className="w-full text-right text-sm text-gray-500">
+          {dayjs(message.createdAt).format("MMM D, YYYY h:mm A")}
+        </div>
+      </CardFooter>
+
     </Card>
   )
 }
