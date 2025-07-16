@@ -14,7 +14,7 @@ import { Loader2, Send } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 
 
-const page = () => {
+const Page = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isGettingMessages, setIsGettingMessages] = useState(false)
   const [suggestMessages, setSuggestMessages] = useState<string[]>([])
@@ -161,4 +161,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

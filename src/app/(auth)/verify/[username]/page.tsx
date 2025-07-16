@@ -13,7 +13,7 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import * as z from "zod"
 
-const page = () => {
+const Page = () => {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const router = useRouter()
     const params = useParams<{username: string}>()
@@ -25,7 +25,7 @@ const page = () => {
     const onSubmit = async (data: z.infer<typeof verifySchema>) => {
         setIsSubmitting(true)
         try {
-            const response = await axios.post(`/api/verify-code`, {
+            await axios.post(`/api/verify-code`, {
                 username: params.username,
                 code: data.verifyCode
             })
@@ -35,7 +35,7 @@ const page = () => {
             
         } catch (error) {
             console.error("Error while verifying user", error)
-            const axiosError = error as AxiosError<ApiResponse>
+            error as AxiosError<ApiResponse>
             toast.error("Account verification failed")
             setIsSubmitting(false)
         }
@@ -86,4 +86,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

@@ -9,17 +9,15 @@ import { useSession } from "next-auth/react"
 import { useCallback, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
-import { boolean } from "zod"
 import { User } from "next-auth"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
-import { register } from "module"
 import { Separator } from "@/components/ui/separator"
 import { Loader2, RefreshCcw } from "lucide-react"
 import MessageCard from "@/components/MessageCard"
 
 
-const page = () => {
+const Page = () => {
   const [messages, setMessages] = useState<Message[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [isSwitchLoading, setIsSwitchLoading] = useState(false)
@@ -156,7 +154,7 @@ const page = () => {
       </Button>
       <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
         {messages.length > 0 ? (
-          messages.map((message, index) => (
+          messages.map((message) => (
             <MessageCard 
               key={message._id}
               message={message}
@@ -172,4 +170,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

@@ -15,11 +15,11 @@ const Navbar = () => {
   return (
     <nav className='p-4 border border-b-gray-500/20'>
         <div className='mx-auto lg:mx-16 flex flex-col md:flex-row justify-between items-center'>
-            <a 
+            <Link
                 className='text-xl font-bold mb-4 md:mb-0 bg-gray-400 px-2 py-1 rounded-lg' 
                 href="/">
                 AMA
-            </a>
+            </Link>
             <div>
 
             {
