@@ -37,7 +37,7 @@ const MessageCard = ({message, onMessageDelete}: MessageCardProps) => {
         onMessageDelete(message._id)
     }
   return (
-    <Card className="relative w-[440]">
+    <Card className="relative">
       <div className="absolute top-2 right-2">      
         <AlertDialog>
           <AlertDialogTrigger asChild>
@@ -63,7 +63,7 @@ const MessageCard = ({message, onMessageDelete}: MessageCardProps) => {
       </div>
 
       <div className="flex-grow">
-        <CardHeader className="w-[400]">
+        <CardHeader className="md:w-[400px] w-[300px] h-full">
           <CardTitle>{message.content}</CardTitle>
         </CardHeader>
       </div>
