@@ -1,7 +1,6 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import Image from "next/image"
 import { useRef, useState, useEffect } from "react"
 
 const reviews = [
@@ -71,7 +70,7 @@ const ReviewCard = ({
     )}
   >
     <div className="flex items-center gap-2">
-      <Image
+      <img
         className="rounded-full"
         width="32"
         height="32"
