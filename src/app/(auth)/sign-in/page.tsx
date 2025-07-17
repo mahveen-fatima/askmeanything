@@ -35,7 +35,7 @@ const Page = () => {
       identifier: data.identifier,
       password: data.password
     })
-
+    router.replace("/dashboard")
     if(result?.error) {
       if(result.error === "CredentialsSignin") {
         toast.error("Sign in failed")
